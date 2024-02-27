@@ -7,3 +7,9 @@ vim.api.nvim_set_keymap(
   ":lua require('telescope.builtin').find_files()<CR>",
   opt
 )
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>?",
+  ":lua require('telescope').extensions.recent_files.pick()<CR>",
+  opt
+)
