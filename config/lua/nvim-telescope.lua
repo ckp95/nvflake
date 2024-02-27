@@ -1,3 +1,5 @@
+-- TODO: fzf integration
+
 local telescope = require("telescope")
 telescope.setup({})
 

@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- TODO figure these out
 -- set tabstop=2 softtabstop=2
 -- set shiftwidth=2
 -- set expandtab
