@@ -33,5 +33,4 @@ let
 in builtins.concatStringsSep "\n"
 (builtins.map (configs: sourceConfigFiles configs) [
   lua
-  luanix
 ])
