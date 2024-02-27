@@ -1,3 +1,3 @@
-const hello: string = "world";
+const hello: string = 3;
 
 
