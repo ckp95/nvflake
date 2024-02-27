@@ -1,3 +1,5 @@
+# this is done in a really dopey way
+
 { pkgs }:
 let
   scripts2ConfigFiles = dir:
@@ -14,8 +16,12 @@ let
     (builtins.attrNames (builtins.readDir configDir));
 
   sourceConfigFiles = files:
-    builtins.concatStringsSep "\n"
-    (builtins.map (file: "source ${file}") files);
+    builtins.concatStringsSep "\n" (builtins.map (file:
+      (if pkgs.lib.strings.hasSuffix "lua" file then "luafile" else "source")
+      + " ${file}") files);
 
   vim = scripts2ConfigFiles "vim";
-in sourceConfigFiles vim
+  lua = scripts2ConfigFiles "lua";
+
+in builtins.concatStringsSep "\n"
+(builtins.map (configs: sourceConfigFiles configs) [ vim lua ])
