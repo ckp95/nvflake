@@ -1,8 +1,17 @@
 { pkgs }:
 let
   customRC = import ../config { inherit pkgs; };
-  plugins = import ../plugins.nix { inherit pkgs; };
-  runtimeDeps = import ../runtimeDeps.nix { inherit pkgs; };
+  plugins = with pkgs.vimPlugins; [
+    telescope-nvim
+    telescope-recent-files
+    nvim-lspconfig
+  ];
+  runtimeDeps = with pkgs; [
+    lazygit
+    # packages with results in /lib/node_modules/.bin must come at the end
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+  ];
   neovimRuntimeDependencies = pkgs.symlinkJoin {
     name = "neovimRuntimeDependencies";
     paths = runtimeDeps;
@@ -20,12 +29,11 @@ let
       packages.all.start = plugins;
     };
   };
-in
-  pkgs.writeShellApplication {
-    name = "nvim";
-    # these get added to the PATH environmental variable when neovim is run:
-    runtimeInputs = [ neovimRuntimeDependencies ];
-    text = ''
-      ${myNeovimUnwrapped}/bin/nvim "$@"
-    '';
-  }
+in pkgs.writeShellApplication {
+  name = "nvim";
+  # these get added to the PATH environmental variable when neovim is run:
+  runtimeInputs = [ neovimRuntimeDependencies ];
+  text = ''
+    ${myNeovimUnwrapped}/bin/nvim "$@"
+  '';
+}
