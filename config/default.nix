@@ -28,6 +28,7 @@ let
       + " ${file}") files);
 
   vim = scripts2ConfigFiles "vim";
+  vimnix = scripts2ConfigFiles "vimnix";
   lua = scripts2ConfigFiles "lua";
   luanix = nixFiles2ConfigFiles "luanix";
 
