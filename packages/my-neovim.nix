@@ -5,6 +5,7 @@ let
     telescope-nvim
     telescope-recent-files
     nvim-lspconfig
+    catppuccin-nvim
   ];
   runtimeDeps = with pkgs; [
     lazygit
