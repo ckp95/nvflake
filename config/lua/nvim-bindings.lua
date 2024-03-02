@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     print("hello from LspAttach")
     local nmap = function(lhs, rhs, desc)
-      return vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = ev.buf }
+      return vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = ev.buf })
     end
     nmap("gd",
       vim.lsp.buf.definition,
