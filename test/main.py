@@ -1,9 +1,15 @@
-def foo():
+def hello():
+    x = 4
+    print(x)
     return "aaaa"
 
-def bar():
+def hello_world():
     "bbbb"
 
 if __name__ == "__main__":
+    hello_world()
+
+    x = 2
+
     if False:
-        print(foo())
+        print(hello())
