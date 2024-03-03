@@ -32,6 +32,9 @@ vim.o.clipboard = "unnamedplus"
 -- enable breakindent
 vim.o.breakindent = true
 
+-- set linebreak
+vim.o.linebreak = true
+
 -- save undo history
 vim.o.undofile = true
 
