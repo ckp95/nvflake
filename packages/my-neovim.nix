@@ -15,11 +15,54 @@ let
     luasnip
     cmp_luasnip
     comment-nvim
-
-    # TODO
-    nvim-treesitter-parsers.lua
-    nvim-treesitter-parsers.python
-  ];
+  ] ++ (with pkgs.vimPlugins.nvim-treesitter-parsers; [
+    ada
+    awk
+    bash
+    c
+    cpp
+    css
+    csv
+    diff
+    dockerfile
+    doxygen
+    git_config
+    gitcommit
+    gitignore
+    go
+    haskell
+    ini
+    java
+    javascript
+    jq
+    json
+    json5
+    latex
+    lua
+    make
+    markdown
+    markdown_inline
+    nix
+    ocaml
+    prql
+    python
+    r
+    regex
+    requirements
+    rst
+    rust
+    scss
+    sql
+    ssh_config
+    sxhkdrc
+    toml
+    tsv
+    typescript
+    vimdoc
+    xml
+    yaml
+    zig
+  ]);
   runtimeDeps = with pkgs; [
     lua-language-server
     nil
