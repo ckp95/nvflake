@@ -1,4 +1,5 @@
 require("which-key").setup{} -- show pending keybinds
+require("ibl").setup{}
 
 local telescope = require("telescope")
 telescope.setup({
@@ -9,6 +10,18 @@ telescope.setup({
   }
 })
 telescope.load_extension("fzf")
+
+require("nvim-treesitter.configs").setup{
+  highlight = {
+    enable = true
+  },
+  -- indent = {
+  --   enable = true
+  -- },
+  -- incremental_selection = {
+  --   enable = true
+  -- },
+}
 
 local nvim_lsp = require("lspconfig")
 

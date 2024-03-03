@@ -9,6 +9,13 @@ vim.g.maplocalleader = " "
 -- set number
 -- set relativenumber
 
+-- indentation stuff
+vim.o.smartindent = true
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.tabstop = 8
+
 -- set highlight on search
 vim.o.hlsearch = false
 

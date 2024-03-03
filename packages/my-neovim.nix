@@ -8,6 +8,12 @@ let
     telescope-recent-files
     nvim-lspconfig
     catppuccin-nvim
+    indent-blankline-nvim
+    nvim-treesitter
+
+    # TODO
+    nvim-treesitter-parsers.lua
+    nvim-treesitter-parsers.python
   ];
   runtimeDeps = with pkgs; [
     lua-language-server
