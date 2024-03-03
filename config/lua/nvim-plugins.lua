@@ -31,5 +31,8 @@ nvim_lsp.lua_ls.setup({
 -- nix
 nvim_lsp.nil_ls.setup{}
 
+-- bash
+nvim_lsp.bashls.setup{}
+
 -- TODO: need LSPs for:
--- rust, bash
+-- rust

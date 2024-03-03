@@ -13,6 +13,7 @@ let
     lua-language-server
     nil
     # packages with results in /lib/node_modules/.bin must come at the end
+    nodePackages.bash-language-server
     nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
