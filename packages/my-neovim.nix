@@ -10,6 +10,10 @@ let
     catppuccin-nvim
     indent-blankline-nvim
     nvim-treesitter
+    nvim-cmp
+    cmp-nvim-lsp
+    luasnip
+    cmp_luasnip
 
     # TODO
     nvim-treesitter-parsers.lua

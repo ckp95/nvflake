@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.type_definition,
       "goto type [D]definition")
     nmap("K",
-      vim.lsp.buf.type_definition,
+      vim.lsp.buf.hover,
       "hover documentation")
     nmap("<leader>r",
       vim.lsp.buf.rename,

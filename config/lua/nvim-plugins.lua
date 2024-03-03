@@ -22,28 +22,68 @@ require("nvim-treesitter.configs").setup{
   --   enable = true
   -- },
 }
+--
+-- completions
+local luasnip = require("luasnip")
+luasnip.config.setup{}
+local cmp = require("cmp")
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
+
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 
 local nvim_lsp = require("lspconfig")
-
--- python
-nvim_lsp.pyright.setup{}
-
--- typescript
-nvim_lsp.tsserver.setup({})
-
--- lua
+nvim_lsp.pyright.setup{capabilities = cmp_capabilities}
+nvim_lsp.tsserver.setup({capabilities = cmp_capabilities})
 nvim_lsp.lua_ls.setup({
+  capabilities = cmp_capabilities,
   settings = { Lua = {
     diagnostics = {
       globals = {"vim"}
     }
   } }
 })
+nvim_lsp.nil_ls.setup{capabilities = cmp_capabilities}
+nvim_lsp.bashls.setup{capabilities = cmp_capabilities}
+nvim_lsp.rust_analyzer.setup{capabilities = cmp_capabilities}
 
--- nix
-nvim_lsp.nil_ls.setup{}
 
--- bash
-nvim_lsp.bashls.setup{}
-
-nvim_lsp.rust_analyzer.setup{}
