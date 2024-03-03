@@ -23,6 +23,7 @@ nmap("<leader>fh",
 nmap("<leader>fk",
      require('telescope.builtin').keymaps,
      "[fk] Find keymaps")
+-- TODO find in current buffer
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}), -- what is this for?

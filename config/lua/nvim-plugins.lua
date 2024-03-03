@@ -1,5 +1,3 @@
--- TODO: fzf integration
-
 local telescope = require("telescope")
 telescope.setup({})
 
@@ -10,6 +8,13 @@ nvim_lsp.pyright.setup{}
 
 -- typescript
 nvim_lsp.tsserver.setup({})
+
+-- lua
+nvim_lsp.lua_ls.setup({
+  diagnostics = {
+    globals = {"vim"}
+  }
+})
 
 -- TODO: need LSPs for:
 -- nix, rust, lua, bash
