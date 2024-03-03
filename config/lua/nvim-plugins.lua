@@ -1,5 +1,4 @@
--- show pending keybinds
-require("which-key").setup{}
+require("which-key").setup{} -- show pending keybinds
 
 local telescope = require("telescope")
 telescope.setup({
