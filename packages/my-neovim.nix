@@ -2,6 +2,7 @@
 let
   customRC = import ../config { inherit pkgs; };
   plugins = with pkgs.vimPlugins; [
+    which-key-nvim
     telescope-nvim
     telescope-fzf-native-nvim
     telescope-recent-files

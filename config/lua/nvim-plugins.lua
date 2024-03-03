@@ -1,3 +1,6 @@
+-- show pending keybinds
+require("which-key").setup{}
+
 local telescope = require("telescope")
 telescope.setup({
   extensions = {
