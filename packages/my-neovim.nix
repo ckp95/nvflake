@@ -12,6 +12,7 @@ let
   runtimeDeps = with pkgs; [
     lua-language-server
     nil
+    rust-analyzer
     # packages with results in /lib/node_modules/.bin must come at the end
     nodePackages.bash-language-server
     nodePackages.pyright

@@ -34,5 +34,4 @@ nvim_lsp.nil_ls.setup{}
 -- bash
 nvim_lsp.bashls.setup{}
 
--- TODO: need LSPs for:
--- rust
+nvim_lsp.rust_analyzer.setup{}
