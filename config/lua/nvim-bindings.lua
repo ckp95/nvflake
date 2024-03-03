@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap("<leader>D",
       vim.lsp.buf.type_definition,
       "goto type [D]definition")
-    nmap("K",
+    nmap("K", -- double-tap to jump into the window for scrolling etc
       vim.lsp.buf.hover,
       "hover documentation")
     nmap("<leader>r",
