@@ -51,20 +51,3 @@ vim.opt.cursorline = true
 -- keep 8 lines above and below cursor when scrolling
 vim.opt.scrolloff = 8
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

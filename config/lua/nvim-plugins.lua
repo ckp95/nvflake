@@ -11,9 +11,11 @@ nvim_lsp.tsserver.setup({})
 
 -- lua
 nvim_lsp.lua_ls.setup({
-  diagnostics = {
-    globals = {"vim"}
-  }
+  settings = { Lua = {
+    diagnostics = {
+      globals = {"vim"}
+    }
+  } }
 })
 
 -- TODO: need LSPs for:
