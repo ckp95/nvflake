@@ -11,6 +11,12 @@ end
 nmap("<leader>ff",
      require('telescope.builtin').find_files,
      "[ff] Find files")
+nmap("<leader>fs",
+     require('telescope.builtin').grep_string,
+     "[fs] Grep files for string under cursor")
+nmap("<leader>fg",
+     require('telescope.builtin').live_grep,
+     "[fg] Live-grep files")
 nmap("<leader><space>",
      require('telescope.builtin').buffers,
      "[ ] Find existing buffers")
@@ -32,7 +38,9 @@ nmap("<leader>/",
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}), -- what is this for?
   callback = function(ev)
-    print("hello from LspAttach")
+    local client_name = vim.lsp.get_client_by_id(ev.data.client_id).name
+    print("LspAttach:", client_name)
+
     local nmap = function(lhs, rhs, desc)
       return vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = ev.buf })
     end
