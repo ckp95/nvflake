@@ -91,5 +91,6 @@ nvim_lsp.lua_ls.setup({
 nvim_lsp.nil_ls.setup{capabilities = cmp_capabilities}
 nvim_lsp.bashls.setup{capabilities = cmp_capabilities}
 nvim_lsp.rust_analyzer.setup{capabilities = cmp_capabilities}
+nvim_lsp.gopls.setup{capabilities = cmp_capabilities}
 
 
