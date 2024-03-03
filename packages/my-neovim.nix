@@ -14,6 +14,7 @@ let
     cmp-nvim-lsp
     luasnip
     cmp_luasnip
+    comment-nvim
 
     # TODO
     nvim-treesitter-parsers.lua

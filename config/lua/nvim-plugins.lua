@@ -1,5 +1,6 @@
 require("which-key").setup{} -- show pending keybinds
-require("ibl").setup{}
+require("ibl").setup{}       -- indent blank line
+require("Comment").setup{}   -- comment with gc...
 
 local telescope = require("telescope")
 telescope.setup({
