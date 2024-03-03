@@ -1,22 +1,22 @@
 { pkgs }:
 let
   customRC = import ../config { inherit pkgs; };
-  plugins = (import ./treesitter-list.nix { inherit pkgs; })
-    ++ (with pkgs.vimPlugins; [
-      which-key-nvim
-      telescope-nvim
-      telescope-fzf-native-nvim
-      telescope-recent-files
-      nvim-lspconfig
-      catppuccin-nvim
-      indent-blankline-nvim
-      nvim-treesitter
-      nvim-cmp
-      cmp-nvim-lsp
-      luasnip
-      cmp_luasnip
-      comment-nvim
-    ]);
+  treesitter_plugins = import ./treesitter-list.nix { inherit pkgs; };
+  plugins = treesitter_plugins ++ (with pkgs.vimPlugins; [
+    which-key-nvim
+    telescope-nvim
+    telescope-fzf-native-nvim
+    telescope-recent-files
+    nvim-lspconfig
+    catppuccin-nvim
+    indent-blankline-nvim
+    nvim-treesitter
+    nvim-cmp
+    cmp-nvim-lsp
+    luasnip
+    cmp_luasnip
+    comment-nvim
+  ]);
   runtimeDeps = with pkgs; [
     lua-language-server
     nil
