@@ -1,68 +1,22 @@
 { pkgs }:
 let
   customRC = import ../config { inherit pkgs; };
-  plugins = with pkgs.vimPlugins; [
-    which-key-nvim
-    telescope-nvim
-    telescope-fzf-native-nvim
-    telescope-recent-files
-    nvim-lspconfig
-    catppuccin-nvim
-    indent-blankline-nvim
-    nvim-treesitter
-    nvim-cmp
-    cmp-nvim-lsp
-    luasnip
-    cmp_luasnip
-    comment-nvim
-  ] ++ (with pkgs.vimPlugins.nvim-treesitter-parsers; [
-    ada
-    awk
-    bash
-    c
-    cpp
-    css
-    csv
-    diff
-    dockerfile
-    doxygen
-    git_config
-    gitcommit
-    gitignore
-    go
-    haskell
-    ini
-    java
-    javascript
-    jq
-    json
-    json5
-    latex
-    lua
-    make
-    markdown
-    markdown_inline
-    nix
-    ocaml
-    prql
-    python
-    r
-    regex
-    requirements
-    rst
-    rust
-    scss
-    sql
-    ssh_config
-    sxhkdrc
-    toml
-    tsv
-    typescript
-    vimdoc
-    xml
-    yaml
-    zig
-  ]);
+  plugins = (import ./treesitter-list.nix { inherit pkgs; })
+    ++ (with pkgs.vimPlugins; [
+      which-key-nvim
+      telescope-nvim
+      telescope-fzf-native-nvim
+      telescope-recent-files
+      nvim-lspconfig
+      catppuccin-nvim
+      indent-blankline-nvim
+      nvim-treesitter
+      nvim-cmp
+      cmp-nvim-lsp
+      luasnip
+      cmp_luasnip
+      comment-nvim
+    ]);
   runtimeDeps = with pkgs; [
     lua-language-server
     nil
