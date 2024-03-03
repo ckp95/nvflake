@@ -3,12 +3,12 @@ let
   customRC = import ../config { inherit pkgs; };
   plugins = with pkgs.vimPlugins; [
     telescope-nvim
+    telescope-fzf-native-nvim
     telescope-recent-files
     nvim-lspconfig
     catppuccin-nvim
   ];
   runtimeDeps = with pkgs; [
-    lazygit
     lua-language-server
     nil
     # packages with results in /lib/node_modules/.bin must come at the end

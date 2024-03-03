@@ -23,6 +23,10 @@ nmap("<leader>fh",
 nmap("<leader>fk",
      require('telescope.builtin').keymaps,
      "[fk] Find keymaps")
+nmap("<leader>/",
+     require('telescope.builtin').current_buffer_fuzzy_find,
+     "[/] Find in buffer")
+
 -- TODO find in current buffer
 
 vim.api.nvim_create_autocmd('LspAttach', {

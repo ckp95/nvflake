@@ -1,5 +1,12 @@
 local telescope = require("telescope")
-telescope.setup({})
+telescope.setup({
+  extensions = {
+    fzf = {
+      fuzzy = false
+    }
+  }
+})
+telescope.load_extension("fzf")
 
 local nvim_lsp = require("lspconfig")
 
