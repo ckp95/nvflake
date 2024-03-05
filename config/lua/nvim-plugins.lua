@@ -2,8 +2,59 @@ require("which-key").setup{} -- show pending keybinds
 require("ibl").setup{}       -- indent blank line
 require("Comment").setup{}   -- comment with gc...
 
+-- workaround to make multi-selection work in telescope
+-- taken from https://github.com/nvim-telescope/telescope.nvim/issues/416
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+local action_utils = require("telescope.actions.utils")
+local function single_or_multi_select(prompt_bufnr)
+  local current_picker = action_state.get_current_picker(prompt_bufnr)
+  local has_multi_selection = (
+    next(current_picker:get_multi_selection()) ~= nil
+  )
+
+  if has_multi_selection then
+    local results = {}
+    action_utils.map_selections(
+      prompt_bufnr,
+      function(selection)
+        table.insert(results, selection[1])
+      end
+    )
+
+      -- load the selections into buffers list without switching to them
+    for _, filepath in ipairs(results) do
+      -- not the same as vim.fn.bufadd!
+      vim.cmd.badd({ args = { filepath } })
+    end
+
+    require("telescope.pickers").on_close_prompt(prompt_bufnr)
+
+    -- switch to newly loaded buffers if on an empty buffer
+    if vim.fn.bufname() == "" and not vim.bo.modified then
+      vim.cmd.bwipeout()
+      vim.cmd.buffer(results[1])
+    end
+    return
+  end
+
+  -- if does not have multi selection, open single file
+  require("telescope.actions").file_edit(prompt_bufnr)
+end
+
 local telescope = require("telescope")
 telescope.setup({
+  defaults = {
+    mappings = {
+      i = {
+        ['<esc>'] = actions.close,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
+        ['<tab>'] = actions.toggle_selection,
+        ['<cr>'] = single_or_multi_select,
+      }
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = false
