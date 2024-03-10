@@ -16,6 +16,15 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.tabstop = 4
 
+-- override insane defaults for python indentation
+-- (see :help ft-python-indent)
+vim.g.python_indent = {
+    open_paren = vim.o.shiftwidth,
+    nested_paren = vim.o.shiftwidth,
+    continue = vim.o.shiftwidth * 2,
+    closed_paren_align_last_line = false,
+}
+
 -- set highlight on search
 vim.o.hlsearch = false
 
