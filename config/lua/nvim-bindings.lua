@@ -77,6 +77,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap("<leader>sw",
       require("telescope.builtin").lsp_dynamic_workspace_symbols,
       "[s]ymbols in [w]orkspace")
+    nmap("<leader>fe",
+      function ()
+          return require("telescope.builtin").diagnostics({bufnr = 0})
+      end,
+      "[f]ind [e]rrors in buffer")
+    nmap("<leader>fE",
+      require("telescope.builtin").diagnostics,
+      "[f]ind [E]rrors in workspace")
   end,
 })
 
