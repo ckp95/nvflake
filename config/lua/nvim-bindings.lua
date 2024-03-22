@@ -32,6 +32,9 @@ nmap("<leader>fk",
 nmap("<leader>/",
      require('telescope.builtin').current_buffer_fuzzy_find,
      "[/] Find in buffer")
+nmap("<leader>ee",
+  vim.diagnostic.open_float,
+  "[e]xpand [e]rror")
 
 -- TODO find in current buffer
 
@@ -45,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = ev.buf })
     end
     nmap("gd",
-      vim.lsp.buf.definition,
+      require("telescope.builtin").lsp_definitions,
       "[g]oto [d]efinition")
     nmap("gD",
       vim.lsp.buf.declaration,
