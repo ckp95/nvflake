@@ -3,20 +3,18 @@
 
   inputs = {
     nixpkgs = { url = "github:NixOS/nixpkgs"; };
-    neovim = {
-      url = "github:neovim/neovim/stable?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     telescope-recent-files-src = {
       url = "github:smartpde/telescope-recent-files";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, neovim, telescope-recent-files-src }:
+  outputs = { self, nixpkgs,
+            # neovim,
+            telescope-recent-files-src }:
     let
       overlayFlakeInputs = prev: final: {
-        neovim = neovim.packages.x86_64-linux.neovim;
+        neovim = final.neovim-unwrapped;
         vimPlugins = final.vimPlugins // {
           telescope-recent-files = import ./packages/vimPlugins/telescopeRecentFiles.nix {
             src = telescope-recent-files-src;
