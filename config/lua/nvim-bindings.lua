@@ -1,6 +1,13 @@
--- TODO: fzf integration
 local telescope = require("telescope")
-telescope.setup({})
+telescope.setup({
+    defaults = {
+        layout_strategy = "flex",
+        layout_config = {
+            flip_columns = 190,
+            preview_cutoff = 25,
+        }
+    }
+})
 
 local nmap = function(lhs, rhs, desc)
   return vim.keymap.set(
